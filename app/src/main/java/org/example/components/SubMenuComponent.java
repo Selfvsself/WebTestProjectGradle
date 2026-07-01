@@ -7,18 +7,18 @@ import io.qameta.allure.Step;
 
 import java.util.List;
 
-public class HeaderSubMenuComponent {
+public class SubMenuComponent {
 
     private final ElementsCollection menuItems;
     private final SelenideElement root;
 
-    public HeaderSubMenuComponent(SelenideElement root) {
+    public SubMenuComponent(SelenideElement root) {
         this.root = root;
         this.menuItems = root.$$(".w-text--size-md");
     }
 
     @Step("Check that the headers are displayed in the submenu:  {expectedHeaders}")
-    public HeaderSubMenuComponent checkHeaders(List<String> expectedHeaders) {
+    public SubMenuComponent checkHeaders(List<String> expectedHeaders) {
         menuItems.shouldHave(CollectionCondition.textsInAnyOrder(expectedHeaders));
         return this;
     }
