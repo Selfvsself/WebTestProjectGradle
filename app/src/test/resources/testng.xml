@@ -3,22 +3,27 @@
 <suite name="Regression" parallel="tests" thread-count="2">
     <test name="SubHeadMenuItemsTest">
         <classes>
-            <class name="org.example.tests.SubHeadMenuItemsTest"/>
+            <class name="org.example.tests.ui.SubHeadMenuItemsTest"/>
         </classes>
     </test>
     <test name="SearchFieldTest">
         <classes>
-            <class name="org.example.tests.SearchSuggestionsLayoutTest"/>
+            <class name="org.example.tests.ui.SearchSuggestionsLayoutTest"/>
         </classes>
     </test>
     <test name="SearchResultTest">
         <classes>
-            <class name="org.example.tests.SearchResultTest"/>
+            <class name="org.example.tests.ui.SearchResultTest"/>
         </classes>
     </test>
     <test name="StudentResourcesPageTest">
         <classes>
-            <class name="org.example.tests.HeadersOnStudentResourcesPageTest"/>
+            <class name="org.example.tests.ui.HeadersOnStudentResourcesPageTest"/>
+        </classes>
+    </test>
+    <test name="SearchSuggestionsApiTest">
+        <classes>
+            <class name="org.example.tests.api.SearchSuggestionApiTest"/>
         </classes>
     </test>
 </suite>

@@ -47,7 +47,7 @@ public class HeaderComponent {
             searchInput.shouldBe(Condition.visible).click();
             searchInput.clear();
             searchInput.setValue(value);
-            searchInput.has(Condition.value(value));
+            searchInput.shouldBe(Condition.value(value));
             return searchSuggestion.shouldBe(Condition.visible);
         });
         return this;

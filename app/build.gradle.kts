@@ -23,7 +23,14 @@ dependencies {
     implementation(libs.testng)
     implementation(libs.allure.testng)
     implementation(libs.allure.selenide)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.jackson)
+    implementation(libs.okhttp.logging)
+    implementation(libs.allure.okhttp3)
     testRuntimeOnly(libs.logback.classic)
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+    testImplementation(libs.assertj)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -50,7 +57,9 @@ tasks.named<Test>("test") {
         suites("src/test/resources/testng.xml")
     }
 
-    systemProperties(System.getProperties().toMap() as Map<String, *>)
+    System.getProperties().forEach { (key, value) ->
+        systemProperty(key.toString(), value)
+    }
 
     testLogging {
         events("passed", "skipped", "failed")
