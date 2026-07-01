@@ -15,6 +15,10 @@ public final class Pages {
         return Selenide.page(MainPage.class);
     }
 
+    public static StudentResourcesPage studentResourcesPage() {
+        return Selenide.page(StudentResourcesPage.class);
+    }
+
     public static String getMainPageUrl() {
         return System.getProperty("url", "https://wiley.com");
     }

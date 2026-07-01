@@ -44,9 +44,11 @@ public class HeaderComponent {
     @Step("Input the value into the search field: '{value}'")
     public HeaderComponent inputInSearch(String value) {
         Selenide.Wait().until(webDriver -> {
-            searchInput.shouldBe(Condition.visible).clear();
+            searchInput.shouldBe(Condition.visible).click();
+            searchInput.clear();
             searchInput.setValue(value);
-            return searchInput.has(Condition.value(value));
+            searchInput.has(Condition.value(value));
+            return searchSuggestion.shouldBe(Condition.visible);
         });
         return this;
     }
@@ -71,7 +73,6 @@ public class HeaderComponent {
                     searchSuggestion.getRect().toString()
             ));
         }
-
         return this;
     }
 

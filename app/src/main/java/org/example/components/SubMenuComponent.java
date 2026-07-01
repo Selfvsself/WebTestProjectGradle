@@ -1,6 +1,7 @@
 package org.example.components;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
@@ -21,5 +22,12 @@ public class SubMenuComponent {
     public SubMenuComponent checkHeaders(List<String> expectedHeaders) {
         menuItems.shouldHave(CollectionCondition.textsInAnyOrder(expectedHeaders));
         return this;
+    }
+
+    @Step("Click on the submenu header with text: '{headerText}'")
+    public void clickOnHeader(String headerText) {
+        menuItems.findBy(Condition.matchText("(?i).*" + headerText + ".*"))
+                .shouldBe(Condition.visible)
+                .click();
     }
 }

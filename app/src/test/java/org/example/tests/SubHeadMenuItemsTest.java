@@ -13,6 +13,7 @@ import java.util.List;
 @Feature("Header menu")
 public class SubHeadMenuItemsTest extends SelenideBaseTest {
 
+    private static final String TARGET_MENU_ITEM = "Shop";
     private static final List<String> EXPECTED_SUBMENU_HEADERS = List.of(
             "Shop by Subject",
             "Textbooks",
@@ -24,13 +25,13 @@ public class SubHeadMenuItemsTest extends SelenideBaseTest {
     );
 
     @Test(description = "The submenu for the Shop item contains 7 items.")
-    @Description("The test verifies that hovering over or clicking the 'Shop' menu " +
+    @Description("The test verifies that clicking the 'Shop' menu " +
             "displays four mandatory resource subheadings to the user.")
     public void subHeadMenuTest() {
         Pages.openMainPage()
                 .waitPageLoaded()
                 .header()
-                .clickOnMenuItem("Shop")
+                .clickOnMenuItem(TARGET_MENU_ITEM)
                 .checkHeaders(EXPECTED_SUBMENU_HEADERS);
     }
 }

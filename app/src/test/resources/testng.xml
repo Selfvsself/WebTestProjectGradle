@@ -16,4 +16,9 @@
             <class name="org.example.tests.SearchResultTest"/>
         </classes>
     </test>
+    <test name="StudentResourcesPageTest">
+        <classes>
+            <class name="org.example.tests.HeadersOnStudentResourcesPageTest"/>
+        </classes>
+    </test>
 </suite>
