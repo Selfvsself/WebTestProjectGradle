@@ -8,6 +8,9 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+
+    id("io.qameta.allure") version "3.0.1"
+    id("io.qameta.allure-report") version "3.0.1"
 }
 
 repositories {
@@ -16,11 +19,11 @@ repositories {
 }
 
 dependencies {
-    // Use TestNG framework, also requires calling test.useTestNG() below
-    testImplementation(libs.testng)
-
-    // This dependency is used by the application.
-    implementation(libs.guava)
+    implementation(libs.selenide)
+    implementation(libs.testng)
+    implementation(libs.allure.testng)
+    implementation(libs.allure.selenide)
+    testRuntimeOnly(libs.logback.classic)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -30,12 +33,25 @@ java {
     }
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = "org.example.App"
+allure {
+    version.set("2.43.0")
+
+    adapter {
+        frameworks {
+            testng {
+                enabled.set(true)
+            }
+        }
+    }
 }
 
 tasks.named<Test>("test") {
-    // Use TestNG for unit tests.
-    useTestNG()
+    useTestNG {
+        suites("src/test/resources/testng.xml")
+    }
+
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
+
