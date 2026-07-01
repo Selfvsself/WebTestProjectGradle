@@ -4,8 +4,8 @@ This repository contains a test assignment solution featuring automated UI and A
 
 ## 🛠️ Tech Stack
 * **Language:** Java
-* **UI Testing:** Selenium / Selenide
-* **API Testing:** REST Assured
+* **UI Testing:** Selenide
+* **API Testing:** Retrofit
 * **Test Runner:** TestNG
 * **Reporting:** Allure Report
 
