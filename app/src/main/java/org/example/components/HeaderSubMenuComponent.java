@@ -7,8 +7,6 @@ import io.qameta.allure.Step;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.$$;
-
 public class HeaderSubMenuComponent {
 
     private final ElementsCollection menuItems;

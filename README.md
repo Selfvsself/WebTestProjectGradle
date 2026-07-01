@@ -13,7 +13,7 @@ This repository contains a test assignment solution featuring automated UI and A
 Make sure you have JDK and Maven installed, then run:
 
 ```bash
-./gradlew clean test
+./gradlew clean test -Dbrowser=firefox -Dheadless=true
 ```
 
 Allure reports can be generated after the test run using:

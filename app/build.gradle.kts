@@ -50,6 +50,8 @@ tasks.named<Test>("test") {
         suites("src/test/resources/testng.xml")
     }
 
+    systemProperties(System.getProperties().toMap() as Map<String, *>)
+
     testLogging {
         events("passed", "skipped", "failed")
     }
