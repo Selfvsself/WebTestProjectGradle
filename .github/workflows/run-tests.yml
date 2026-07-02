@@ -26,11 +26,10 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Install Xvfb and Microsoft Fonts
+      - name: Install Xvfb
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb ttf-mscorefonts-installer fontconfig
-          sudo fc-cache -f -v
+          sudo apt-get install -y xvfb
 
       - name: Run Tests
         run: |
