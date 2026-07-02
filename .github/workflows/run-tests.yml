@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   automation-tests:
-    timeout-minutes: 10
+    timeout-minutes: 5
     runs-on: self-hosted
 
     steps:
@@ -27,7 +27,7 @@ jobs:
           cache: 'gradle'
 
       - name: Run Tests
-        run: ./gradlew test -Dheadless=true --no-configuration-cache -Djava.security.egd=file:/dev/./urandom
+        run: ./gradlew test -Dheadless=true --no-configuration-cache
 
       - name: Generate Allure Report
         if: always()
