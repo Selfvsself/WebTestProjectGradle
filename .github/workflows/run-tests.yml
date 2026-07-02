@@ -1,4 +1,5 @@
 name: Run tests
+run-name: "Run tests (v${{ github.run_number }}) by ${{ github.actor }} on branch [${{ github.ref_name }}]"
 
 on:
   workflow_dispatch:
@@ -41,6 +42,7 @@ jobs:
           allure_report: app/build/reports/allure-report
           allure_history: allure-history
           keep_reports: 10
+          subfolder: ${{ github.run_number }}
 
       - name: Deploy report to GitHub Pages
         if: always()
