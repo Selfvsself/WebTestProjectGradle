@@ -1,5 +1,5 @@
 name: Run tests
-run-name: "Run tests (${{ github.run_number }}) by ${{ github.actor }} on branch [${{ github.ref_name }}]"
+run-name: "Run tests (${{ github.run_number }}) on branch [${{ github.ref_name }}] by ${{ github.actor }}"
 
 on:
   workflow_dispatch:
