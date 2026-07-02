@@ -27,7 +27,7 @@ jobs:
           cache: 'gradle'
 
       - name: Run Tests
-        run: ./gradlew test -Dheadless=true --no-configuration-cache
+        run: ./gradlew test -Dheadless=true --no-configuration-cache -Djava.security.egd=file:/dev/./urandom
 
       - name: Generate Allure Report
         if: always()
