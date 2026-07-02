@@ -6,12 +6,11 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   automation-tests:
-    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout repository
@@ -28,7 +27,7 @@ jobs:
           cache: 'gradle'
 
       - name: Run Tests
-        run: ./gradlew clean test -Dheadless=true --no-configuration-cache
+        run: ./gradlew test -Dheadless=true --no-configuration-cache
 
       - name: Generate Allure Report
         if: always()
@@ -36,13 +35,12 @@ jobs:
 
       - name: Deploy Allure Report to GitHub Pages
         if: always()
-        uses: simple-elf/allure-report-action@master
+        uses: simple-elf/allure-report-action@v1.14
         with:
           allure_results: app/build/allure-results
           allure_report: app/build/reports/allure-report
           allure_history: allure-history
-          keep_reports: 10
-          subfolder: ${{ github.run_number }}
+          keep_reports: 5
 
       - name: Deploy report to GitHub Pages
         if: always()
