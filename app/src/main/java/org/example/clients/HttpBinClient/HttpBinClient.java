@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import okhttp3.ResponseBody;
 import org.example.clients.BaseApiClient;
 import org.example.clients.HttpBinClient.api.HttpBinService;
-import org.example.clients.SearchClient.model.SearchResponse;
 import retrofit2.Response;
 
 public class HttpBinClient extends BaseApiClient {
