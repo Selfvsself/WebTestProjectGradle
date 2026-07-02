@@ -37,6 +37,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Get Allure history
+        final_history_step: true
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: allure-history
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
@@ -89,6 +97,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: allure-history
+          keep_files: true
 
       - name: Add Allure Report link to Job Summary
         if: always()
