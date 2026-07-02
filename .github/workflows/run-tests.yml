@@ -48,14 +48,24 @@ jobs:
           cache: 'gradle'
 
       - name: Install Xvfb
+        if: ${{ github.event.inputs.headless == 'false' }}
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb
 
-      - name: Run Tests
+      - name: Run Tests (UI mode)
+        if: ${{ github.event.inputs.headless == 'false' }}
         run: |
           xvfb-run --server-args="-screen 0 1920x1080x24" \
             ./gradlew test \
+            -Dbrowser=${{ github.event.inputs.browser }} \
+            -Dheadless=${{ github.event.inputs.headless }} \
+            --no-configuration-cache
+
+      - name: Run Tests (Headless mode)
+        if: ${{ github.event.inputs.headless == 'true' }}
+        run: |
+          ./gradlew test \
             -Dbrowser=${{ github.event.inputs.browser }} \
             -Dheadless=${{ github.event.inputs.headless }} \
             --no-configuration-cache
