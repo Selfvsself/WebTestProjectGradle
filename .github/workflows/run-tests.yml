@@ -26,8 +26,15 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
+      - name: Install Xvfb and Microsoft Fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb ttf-mscorefonts-installer fontconfig
+          sudo fc-cache -f -v
+
       - name: Run Tests
-        run: ./gradlew test -Dheadless=true --no-configuration-cache
+        run: |
+          xvfb-run --server-args="-screen 0 1920x1080x24" ./gradlew test -Dheadless=false --no-configuration-cache
 
       - name: Generate Allure Report
         if: always()
