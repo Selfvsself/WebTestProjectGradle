@@ -28,7 +28,7 @@ public abstract class BaseApiClient {
                 .create(serviceClass);
     }
 
-    public <T> T executeCall(Call<T> call) {
+    protected <T> Response<T> execute(Call<T> call) {
         try {
             Response<T> response = call.execute();
 
@@ -48,10 +48,22 @@ public abstract class BaseApiClient {
                 }
             }
 
-            return response.body();
+            return response;
 
         } catch (IOException e) {
             throw new RuntimeException("Error sending HTTP request to: " + call.request().url(), e);
         }
+    }
+
+    public <T> T executeCall(Call<T> call) {
+        return execute(call).body();
+    }
+
+    protected <T> Long executeAndMeasureTime(Call<T> call) {
+        Response<T> response = execute(call);
+        okhttp3.Response raw = response.raw();
+        long sent = raw.sentRequestAtMillis();
+        long received = raw.receivedResponseAtMillis();
+        return received - sent;
     }
 }

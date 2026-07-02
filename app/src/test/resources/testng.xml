@@ -26,4 +26,14 @@
             <class name="org.example.tests.api.SearchSuggestionApiTest"/>
         </classes>
     </test>
+    <test name="PostDelayApiTest">
+        <classes>
+            <class name="org.example.tests.api.DelayApiTest"/>
+        </classes>
+    </test>
+    <test name="PNGImageApiTest">
+        <classes>
+            <class name="org.example.tests.api.PngImageApiTest"/>
+        </classes>
+    </test>
 </suite>

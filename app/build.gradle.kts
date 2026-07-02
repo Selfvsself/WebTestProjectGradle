@@ -27,10 +27,10 @@ dependencies {
     implementation(libs.retrofit.jackson)
     implementation(libs.okhttp.logging)
     implementation(libs.allure.okhttp3)
+    implementation(libs.assertj)
     testRuntimeOnly(libs.logback.classic)
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
-    testImplementation(libs.assertj)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

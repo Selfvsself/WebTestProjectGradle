@@ -13,6 +13,7 @@ public class HeaderComponent {
 
     private final SelenideElement subMenuElement;
     private final SelenideElement searchInput;
+    private final SelenideElement searchCloseButton;
     private final SelenideElement searchSuggestion;
 
     private final SelenideElement root;
@@ -21,6 +22,7 @@ public class HeaderComponent {
         this.root = root;
         this.subMenuElement = root.$(".w-mega-menu");
         this.searchInput = root.$("input[placeholder='Search']");
+        this.searchCloseButton = root.$(".w-g-header__close-button");
         this.searchSuggestion = root.$(".w-g-header__search-suggestions--isVisible");
     }
 
@@ -43,13 +45,14 @@ public class HeaderComponent {
 
     @Step("Input the value into the search field: '{value}'")
     public HeaderComponent inputInSearch(String value) {
+        searchInput.shouldBe(Condition.visible);
         Selenide.Wait().until(webDriver -> {
-            searchInput.shouldBe(Condition.visible).click();
-            searchInput.clear();
-            searchInput.setValue(value);
-            searchInput.shouldBe(Condition.value(value));
-            return searchSuggestion.shouldBe(Condition.visible);
+            searchInput.click();
+            return searchCloseButton.has(Condition.visible);
         });
+        searchInput.clear();
+        searchInput.setValue(value);
+        searchInput.shouldBe(Condition.value(value));
         return this;
     }
 
@@ -59,7 +62,7 @@ public class HeaderComponent {
         return Selenide.page(SearchResultPage.class);
     }
 
-    @Step()
+    @Step("Verify that the search suggestions are horizontally aligned with the search field.")
     public HeaderComponent verifySuggestionsAreHorizontallyAlignedWithSearch() {
         searchInput.shouldBe(Condition.visible);
         searchSuggestion.shouldBe(Condition.visible);
@@ -69,8 +72,8 @@ public class HeaderComponent {
         if (!isCorrectLayout) {
             throw new AssertionError(String.format(
                     "Layout error! The suggestion panel is misaligned. Input field coordinates: %s, Suggestion coordinates: %s",
-                    searchInput.getRect().toString(),
-                    searchSuggestion.getRect().toString()
+                    searchInput.getRect(),
+                    searchSuggestion.getRect()
             ));
         }
         return this;
